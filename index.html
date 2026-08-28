@@ -5,289 +5,892 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>แกลเลอรีรูปภาพของฉัน | Space Gallery</title>
+    <title>Cosmic Gallery | แกลเลอรีอวกาศ</title>
 
     <style>
+
+        /* ==============================
+           RESET
+        ============================== */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* =========================
-           พื้นหลังธีมอวกาศ
-        ========================= */
+
+        /* ==============================
+           BODY
+        ============================== */
+
         body {
             font-family: "Segoe UI", Tahoma, sans-serif;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(77, 80, 180, 0.35), transparent 25%),
-                radial-gradient(circle at 80% 70%, rgba(111, 45, 189, 0.30), transparent 25%),
-                linear-gradient(135deg, #05051a, #0b1035, #160b2e);
-            color: #ffffff;
             min-height: 100vh;
-            position: relative;
+            color: white;
             overflow-x: hidden;
+
+            background:
+                radial-gradient(circle at 20% 20%, rgba(95, 70, 180, 0.35), transparent 25%),
+                radial-gradient(circle at 80% 30%, rgba(0, 180, 255, 0.20), transparent 25%),
+                radial-gradient(circle at 50% 90%, rgba(120, 40, 200, 0.25), transparent 30%),
+                linear-gradient(
+                    135deg,
+                    #020617 0%,
+                    #07112f 35%,
+                    #11103d 65%,
+                    #020617 100%
+                );
+
+            position: relative;
         }
 
-        /* =========================
-           ดาวตกแต่งพื้นหลัง
-        ========================= */
+
+        /* ==============================
+           STAR BACKGROUND
+        ============================== */
+
         body::before {
             content: "";
             position: fixed;
             inset: 0;
             pointer-events: none;
+            z-index: -1;
 
             background-image:
-                radial-gradient(circle, #ffffff 1px, transparent 1px),
-                radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
-                radial-gradient(circle, rgba(150,200,255,0.7) 1px, transparent 1px);
+                radial-gradient(circle, white 1px, transparent 1.5px),
+                radial-gradient(circle, rgba(255,255,255,.7) 1px, transparent 1.5px),
+                radial-gradient(circle, rgba(100,200,255,.8) 1px, transparent 1.5px);
 
             background-size:
-                90px 90px,
-                150px 150px,
-                210px 210px;
+                100px 100px,
+                160px 160px,
+                230px 230px;
 
             background-position:
                 10px 20px,
                 50px 80px,
-                100px 40px;
+                120px 40px;
 
-            opacity: 0.55;
-            z-index: 0;
+            opacity: .55;
         }
 
-        /* =========================
-           ส่วนหัว
-        ========================= */
+
+        /* ==============================
+           SHOOTING STARS
+        ============================== */
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 180px;
+            height: 2px;
+
+            top: 18%;
+            left: -200px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #fff,
+                #7dd3fc,
+                transparent
+            );
+
+            transform: rotate(-25deg);
+
+            box-shadow: 0 0 15px #7dd3fc;
+
+            animation: shootingStar 7s linear infinite;
+
+            z-index: -1;
+        }
+
+        @keyframes shootingStar {
+
+            0% {
+                left: -250px;
+                top: 10%;
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            30% {
+                left: 110%;
+                top: 45%;
+                opacity: 0;
+            }
+
+            100% {
+                left: 110%;
+                top: 45%;
+                opacity: 0;
+            }
+        }
+
+
+        /* ==============================
+           DECORATIVE PLANETS
+        ============================== */
+
+        .planet {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+
+        .planet-one {
+            width: 150px;
+            height: 150px;
+
+            top: 80px;
+            right: -55px;
+
+            background:
+                radial-gradient(
+                    circle at 30% 30%,
+                    #ffe29a,
+                    #d58b45 45%,
+                    #743b76 80%
+                );
+
+            box-shadow:
+                0 0 30px rgba(255, 180, 100, .4),
+                inset -20px -20px 35px rgba(0,0,0,.4);
+
+            animation: floatPlanet 6s ease-in-out infinite;
+        }
+
+
+        .planet-two {
+            width: 80px;
+            height: 80px;
+
+            left: -25px;
+            top: 48%;
+
+            background:
+                radial-gradient(
+                    circle at 35% 30%,
+                    #b9f2ff,
+                    #3c75c5 50%,
+                    #14265e
+                );
+
+            box-shadow:
+                0 0 25px rgba(80, 180, 255, .4);
+
+            animation: floatPlanet 8s ease-in-out infinite reverse;
+        }
+
+
+        @keyframes floatPlanet {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+
+        /* ==============================
+           HEADER
+        ============================== */
+
         header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 75px 20px 45px;
+
             position: relative;
-            z-index: 1;
         }
+
+
+        header::before {
+            content: "✦";
+            position: absolute;
+
+            top: 35px;
+            left: 20%;
+
+            font-size: 28px;
+            color: #7dd3fc;
+
+            animation: twinkle 2s infinite;
+        }
+
+
+        header::after {
+            content: "✧";
+            position: absolute;
+
+            top: 90px;
+            right: 22%;
+
+            font-size: 38px;
+            color: #c084fc;
+
+            animation: twinkle 2.5s infinite;
+        }
+
+
+        @keyframes twinkle {
+
+            0%, 100% {
+                opacity: .3;
+                transform: scale(.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
 
         header h1 {
-            font-size: 42px;
-            color: #ffffff;
-            margin-bottom: 12px;
+            font-size: clamp(35px, 6vw, 58px);
+
+            font-weight: 800;
+            letter-spacing: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #7dd3fc,
+                    #c084fc,
+                    #ffffff
+                );
+
+            background-size: 250%;
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            animation: galaxyText 5s ease infinite;
 
             text-shadow:
-                0 0 10px rgba(120, 180, 255, 0.9),
-                0 0 25px rgba(120, 100, 255, 0.6);
+                0 0 30px rgba(125, 211, 252, .25);
         }
+
+
+        @keyframes galaxyText {
+
+            0% {
+                background-position: 0%;
+            }
+
+            50% {
+                background-position: 100%;
+            }
+
+            100% {
+                background-position: 0%;
+            }
+        }
+
 
         header p {
+            margin-top: 15px;
+
             font-size: 18px;
-            color: #cbd5ff;
+            color: #cbd5e1;
+
+            letter-spacing: 1px;
         }
 
-        /* =========================
-           แกลเลอรี
-           โครงสร้างเดิม
-        ========================= */
+
+        .subtitle {
+            display: inline-block;
+
+            margin-top: 25px;
+            padding: 8px 18px;
+
+            border: 1px solid rgba(125, 211, 252, .35);
+            border-radius: 50px;
+
+            background: rgba(255,255,255,.05);
+
+            backdrop-filter: blur(10px);
+
+            color: #7dd3fc;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+
+        /* ==============================
+           GALLERY
+        ============================== */
+
         .gallery {
-            max-width: 1100px;
+
+            width: min(1150px, 92%);
+
             margin: 0 auto;
-            padding: 20px;
+
+            padding: 20px 0 70px;
+
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            position: relative;
-            z-index: 1;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 30px;
         }
 
-        /* =========================
-           การ์ด
-        ========================= */
+
+        /* ==============================
+           CARD
+        ============================== */
+
         .card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 24px;
+
             background:
                 linear-gradient(
                     145deg,
-                    rgba(30, 35, 80, 0.95),
-                    rgba(12, 15, 45, 0.95)
+                    rgba(255,255,255,.13),
+                    rgba(255,255,255,.04)
                 );
 
-            border-radius: 18px;
-            overflow: hidden;
+            border:
+                1px solid rgba(255,255,255,.15);
 
-            border: 1px solid rgba(150, 180, 255, 0.25);
+            backdrop-filter: blur(15px);
 
             box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.45),
-                0 0 20px rgba(70, 100, 255, 0.12);
+                0 20px 50px rgba(0,0,0,.45),
+                inset 0 1px rgba(255,255,255,.12);
 
-            transition: 0.3s;
+            transition:
+                transform .4s ease,
+                box-shadow .4s ease,
+                border-color .4s ease;
+
+            animation: cardAppear .8s ease both;
         }
+
+
+        .card:nth-child(2) {
+            animation-delay: .15s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: .3s;
+        }
+
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
 
         .card:hover {
-            transform: translateY(-8px);
+
+            transform:
+                translateY(-12px)
+                rotateX(2deg);
+
+            border-color:
+                rgba(125,211,252,.6);
 
             box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.55),
-                0 0 30px rgba(90, 140, 255, 0.35);
-
-            border-color: rgba(140, 180, 255, 0.55);
+                0 30px 70px rgba(0,0,0,.6),
+                0 0 35px rgba(56,189,248,.18);
         }
 
-        /* =========================
-           รูปภาพ
-        ========================= */
+
+        /* ==============================
+           IMAGE
+        ============================== */
+
+        .image-box {
+            position: relative;
+            overflow: hidden;
+        }
+
+
         .card img {
+
             width: 100%;
-            height: 250px;
+            height: 280px;
+
             object-fit: cover;
+
             display: block;
-            transition: 0.4s;
+
+            transition:
+                transform .7s ease,
+                filter .5s ease;
         }
+
 
         .card:hover img {
-            transform: scale(1.05);
+
+            transform: scale(1.08);
+
+            filter:
+                brightness(1.08)
+                saturate(1.15);
         }
 
-        /* =========================
-           ข้อความ
-        ========================= */
-        .content {
-            padding: 20px;
-        }
 
-        .content h2 {
-            font-size: 22px;
-            color: #8fc7ff;
-            margin-bottom: 10px;
+        /* Image overlay */
 
-            text-shadow:
-                0 0 8px rgba(100, 180, 255, 0.5);
-        }
+        .image-box::after {
 
-        .content p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: #c8cdea;
-        }
+            content: "";
 
-        /* =========================
-           ส่วนท้าย
-        ========================= */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 40px;
+            position: absolute;
+
+            inset: 0;
 
             background:
                 linear-gradient(
-                    135deg,
-                    #07091f,
-                    #101642
+                    to top,
+                    rgba(2,6,23,.7),
+                    transparent 55%
                 );
 
-            color: #dbe6ff;
+            pointer-events: none;
+        }
 
-            border-top: 1px solid rgba(140, 180, 255, 0.2);
+
+        /* ==============================
+           CARD CONTENT
+        ============================== */
+
+        .content {
+
+            padding: 24px 24px 28px;
+        }
+
+
+        .number {
+
+            display: inline-block;
+
+            font-size: 12px;
+
+            color: #7dd3fc;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .content h2 {
+
+            font-size: 23px;
+
+            margin-bottom: 10px;
+
+            color: #ffffff;
+        }
+
+
+        .content p {
+
+            font-size: 15px;
+
+            line-height: 1.8;
+
+            color: #cbd5e1;
+        }
+
+
+        /* ==============================
+           COSMIC LINE
+        ============================== */
+
+        .cosmic-line {
+
+            width: 55px;
+            height: 3px;
+
+            margin-top: 17px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #38bdf8,
+                    #a855f7
+                );
 
             box-shadow:
-                0 -5px 25px rgba(0, 0, 0, 0.3);
+                0 0 12px rgba(56,189,248,.7);
+        }
+
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        footer {
 
             position: relative;
-            z-index: 1;
+
+            text-align: center;
+
+            padding: 45px 20px;
+
+            margin-top: 20px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(2,6,23,.1),
+                    rgba(2,6,23,.8)
+                );
+
+            border-top:
+                1px solid rgba(255,255,255,.08);
         }
+
+
+        footer .rocket {
+
+            font-size: 35px;
+
+            display: inline-block;
+
+            margin-bottom: 12px;
+
+            animation:
+                rocketFloat 2s ease-in-out infinite;
+        }
+
+
+        @keyframes rocketFloat {
+
+            0%, 100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(5deg);
+            }
+        }
+
 
         footer p {
-            margin: 5px;
+
+            margin: 6px;
+
+            color: #94a3b8;
+
+            font-size: 14px;
         }
 
-        /* =========================
-           รองรับแท็บเล็ต
-           รูปแบบเดิม
-        ========================= */
+
+        footer p:first-of-type {
+
+            color: #e2e8f0;
+
+            font-size: 15px;
+        }
+
+
+        /* ==============================
+           TABLET
+        ============================== */
+
         @media (max-width: 900px) {
+
             .gallery {
-                grid-template-columns: repeat(2, 1fr);
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                width: 90%;
+            }
+
+            .planet-one {
+
+                width: 110px;
+                height: 110px;
             }
         }
 
-        /* =========================
-           รองรับมือถือ
-           รูปแบบเดิม
-        ========================= */
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
         @media (max-width: 600px) {
-            header h1 {
-                font-size: 32px;
+
+            header {
+
+                padding:
+                    60px 18px 35px;
             }
 
-            .gallery {
-                grid-template-columns: 1fr;
+
+            header h1 {
+
+                font-size: 34px;
+
+                line-height: 1.25;
             }
+
+
+            header p {
+
+                font-size: 15px;
+            }
+
+
+            .subtitle {
+
+                font-size: 11px;
+            }
+
+
+            .gallery {
+
+                grid-template-columns: 1fr;
+
+                width: 90%;
+
+                gap: 25px;
+            }
+
 
             .card img {
-                height: 230px;
+
+                height: 240px;
+            }
+
+
+            .content {
+
+                padding: 20px;
+            }
+
+
+            .planet-one {
+
+                width: 80px;
+                height: 80px;
+
+                right: -35px;
+            }
+
+
+            .planet-two {
+
+                width: 55px;
+                height: 55px;
+
+                left: -20px;
             }
         }
+
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- ส่วนหัว -->
+
+    <!-- ดาวเคราะห์ตกแต่ง -->
+    <div class="planet planet-one"></div>
+    <div class="planet planet-two"></div>
+
+
+    <!-- ==============================
+         HEADER
+    ============================== -->
+
     <header>
-        <h1>📷 แกลเลอรีรูปภาพของฉัน</h1>
-        <p>รวมภาพที่ฉันชื่นชอบ 3 รูป ✨🌌</p>
+
+        <h1>🚀 Cosmic Gallery</h1>
+
+        <p>
+            แกลเลอรีภาพที่ฉันชื่นชอบจากโลกและอวกาศ
+        </p>
+
+        <div class="subtitle">
+            ✦ EXPLORE THE UNIVERSE ✦
+        </div>
+
     </header>
 
 
-    <!-- แกลเลอรีรูปภาพ -->
-    <section class="gallery">
+    <!-- ==============================
+         GALLERY
+    ============================== -->
 
-        <!-- รูปที่ 1 -->
-        <div class="card">
-            <img src="image1.jpg" alt="รูปภาพที่ 1">
+    <main>
 
-            <div class="content">
-                <h2>ภาพที่ 1</h2>
-                <p>
-                    แสงเหนือสีเขียวบนท้องฟ้าเหนือชายหาดหิน
-                    ท่ามกลางบรรยากาศยามค่ำคืน 🌌
-                </p>
-            </div>
-        </div>
+        <section class="gallery">
 
 
-        <!-- รูปที่ 2 -->
-        <div class="card">
-            <img src="image2.jpg" alt="รูปภาพที่ 2">
+            <!-- รูปที่ 1 -->
 
-            <div class="content">
-                <h2>ภาพที่ 2</h2>
-                <p>
-                    เม่นตัวน้อยที่น่ารักนั่งอยู่กลางดอกไม้สีเหลือง
-                    และหญ้าสีเขียว 🌼
-                </p>
-            </div>
-        </div>
+            <article class="card">
+
+                <div class="image-box">
+
+                    <img
+                        src="image1.jpg"
+                        alt="แสงเหนือสีเขียวบนท้องฟ้ายามค่ำคืน"
+                    >
+
+                </div>
+
+                <div class="content">
+
+                    <span class="number">
+                        COSMIC 01
+                    </span>
+
+                    <h2>
+                        🌌 แสงเหนือ
+                    </h2>
+
+                    <p>
+                        แสงเหนือสีเขียวที่ส่องประกายอยู่บนท้องฟ้า
+                        เหนือชายหาดหินในยามค่ำคืน
+                        เป็นภาพที่ให้ความรู้สึกเหมือนกำลังมอง
+                        ไปยังอีกโลกหนึ่งในจักรวาล
+                    </p>
+
+                    <div class="cosmic-line"></div>
+
+                </div>
+
+            </article>
 
 
-        <!-- รูปที่ 3 -->
-        <div class="card">
-            <img src="image3.jpg" alt="รูปภาพที่ 3">
 
-            <div class="content">
-                <h2>ภาพที่ 3</h2>
-                <p>
-                    ไลกา สุนัขที่ถูกส่งขึ้นไปในอวกาศที่กลายเป็น
-                    สัตว์ตัวแรกที่โคจรรอบโลก 🚀
-                </p>
-            </div>
-        </div>
+            <!-- รูปที่ 2 -->
 
-    </section>
+            <article class="card">
+
+                <div class="image-box">
+
+                    <img
+                        src="image2.jpg"
+                        alt="เม่นตัวน้อยอยู่ท่ามกลางดอกไม้สีเหลือง"
+                    >
+
+                </div>
+
+                <div class="content">
+
+                    <span class="number">
+                        COSMIC 02
+                    </span>
+
+                    <h2>
+                        🌼 Little Explorer
+                    </h2>
+
+                    <p>
+                        เม่นตัวน้อยที่น่ารักกำลังนั่งอยู่ท่ามกลาง
+                        ดอกไม้สีเหลืองและหญ้าสีเขียว
+                        ภาพเล็ก ๆ ที่เต็มไปด้วยความสดใส
+                        และความน่ารัก
+                    </p>
+
+                    <div class="cosmic-line"></div>
+
+                </div>
+
+            </article>
 
 
-    <!-- ส่วนท้าย -->
+
+            <!-- รูปที่ 3 -->
+
+            <article class="card">
+
+                <div class="image-box">
+
+                    <img
+                        src="image3.jpg"
+                        alt="ไลกาสุนัขที่ถูกส่งขึ้นสู่อวกาศ"
+                    >
+
+                </div>
+
+                <div class="content">
+
+                    <span class="number">
+                        COSMIC 03
+                    </span>
+
+                    <h2>
+                        🚀 Laika
+                    </h2>
+
+                    <p>
+                        ไลกา สุนัขที่ถูกส่งขึ้นสู่อวกาศ
+                        ในเหตุการณ์สำคัญของประวัติศาสตร์
+                        การสำรวจอวกาศ และกลายเป็นหนึ่งใน
+                        สัญลักษณ์สำคัญของยุคเริ่มต้นอวกาศ
+                    </p>
+
+                    <div class="cosmic-line"></div>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- ==============================
+         FOOTER
+    ============================== -->
+
     <footer>
-        <p>© 2026 แกลเลอรีรูปภาพของฉัน 🌌</p>
-        <p>สร้างสรรค์โดยนักเรียน 🚀</p>
+
+        <div class="rocket">
+            🚀
+        </div>
+
+        <p>
+            © 2026 Cosmic Gallery
+        </p>
+
+        <p>
+            ✦ Created by Student Explorer ✦
+        </p>
+
     </footer>
+
 
 </body>
 </html>
