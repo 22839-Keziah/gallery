@@ -1,193 +1,216 @@
 <!DOCTYPE html>
+
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>แกลเลอรีรูปภาพของฉัน</title>
+```
+<title>แกลเลอรีรูปภาพของฉัน</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body {
-            font-family: "Segoe UI", Tahoma, sans-serif;
-            background: linear-gradient(135deg, #eef7ff, #f8fbff);
-            color: #333;
-        }
+    body {
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background:
+            radial-gradient(circle at 20% 20%, rgba(92, 70, 150, 0.25), transparent 25%),
+            radial-gradient(circle at 80% 30%, rgba(40, 90, 180, 0.20), transparent 25%),
+            linear-gradient(135deg, #050816, #0b1230, #111a3d);
+        color: #e8ecff;
+        min-height: 100vh;
+    }
 
-        /* ส่วนหัว */
-        header {
-            text-align: center;
-            padding: 60px 20px 40px;
-        }
+    /* ส่วนหัว */
+    header {
+        text-align: center;
+        padding: 60px 20px 40px;
+    }
 
-        header h1 {
-            font-size: 42px;
-            color: #1769aa;
-            margin-bottom: 12px;
-        }
+    header h1 {
+        font-size: 42px;
+        color: #8fd3ff;
+        margin-bottom: 12px;
+        text-shadow:
+            0 0 10px rgba(143, 211, 255, 0.8),
+            0 0 25px rgba(100, 160, 255, 0.5);
+    }
 
-        header p {
-            font-size: 18px;
-            color: #666;
-        }
+    header p {
+        font-size: 18px;
+        color: #b8c4e8;
+    }
 
-        /* แกลเลอรี */
+    /* แกลเลอรี */
+    .gallery {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+
+    /* การ์ด */
+    .card {
+        background: rgba(18, 27, 58, 0.88);
+        border: 1px solid rgba(143, 211, 255, 0.25);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow:
+            0 8px 25px rgba(0, 0, 0, 0.45),
+            0 0 20px rgba(85, 140, 255, 0.08);
+        transition: 0.3s;
+        backdrop-filter: blur(6px);
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow:
+            0 15px 35px rgba(0, 0, 0, 0.55),
+            0 0 25px rgba(100, 180, 255, 0.25);
+        border-color: rgba(143, 211, 255, 0.55);
+    }
+
+    /* รูปภาพ */
+    .card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+        transition: 0.4s;
+    }
+
+    .card:hover img {
+        transform: scale(1.05);
+    }
+
+    /* ข้อความ */
+    .content {
+        padding: 20px;
+    }
+
+    .content h2 {
+        font-size: 22px;
+        color: #8fd3ff;
+        margin-bottom: 10px;
+        text-shadow: 0 0 8px rgba(143, 211, 255, 0.35);
+    }
+
+    .content p {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #c3cbea;
+    }
+
+    /* ส่วนท้าย */
+    footer {
+        text-align: center;
+        padding: 40px 20px;
+        margin-top: 40px;
+        background: #030511;
+        color: #dce7ff;
+        border-top: 1px solid rgba(143, 211, 255, 0.2);
+        box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    footer p {
+        margin: 5px;
+    }
+
+    /* รองรับแท็บเล็ต */
+    @media (max-width: 900px) {
         .gallery {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* รองรับมือถือ */
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 32px;
         }
 
-        /* การ์ด */
-        .card {
-            background: white;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
-            transition: 0.3s;
+        .gallery {
+            grid-template-columns: 1fr;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
-        }
-
-        /* รูปภาพ */
         .card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-            transition: 0.4s;
+            height: 230px;
         }
+    }
+</style>
+```
 
-        .card:hover img {
-            transform: scale(1.05);
-        }
-
-        /* ข้อความ */
-        .content {
-            padding: 20px;
-        }
-
-        .content h2 {
-            font-size: 22px;
-            color: #1769aa;
-            margin-bottom: 10px;
-        }
-
-        .content p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: #666;
-        }
-
-        /* ส่วนท้าย */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 40px;
-            background: #1769aa;
-            color: white;
-        }
-
-        footer p {
-            margin: 5px;
-        }
-
-        /* รองรับแท็บเล็ต */
-        @media (max-width: 900px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* รองรับมือถือ */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 32px;
-            }
-
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .card img {
-                height: 230px;
-            }
-        }
-    </style>
 </head>
 
 <body>
 
-    <!-- ส่วนหัว -->
-    <header>
-        <h1>📷 แกลเลอรีรูปภาพของฉัน</h1>
-        <p>รวมภาพที่ฉันชื่นชอบ 3 รูป</p>
-    </header>
+```
+<!-- ส่วนหัว -->
+<header>
+    <h1>🚀 แกลเลอรีรูปภาพของฉัน</h1>
+    <p>รวมภาพที่ฉันชื่นชอบจากโลกและอวกาศ 🌌</p>
+</header>
 
 
-    <!-- แกลเลอรีรูปภาพ -->
-    <section class="gallery">
+<!-- แกลเลอรีรูปภาพ -->
+<section class="gallery">
 
-        <!-- รูปที่ 1 -->
-        <div class="card">
-            <img src="image1.jpg" alt="รูปภาพที่ 1">
+    <!-- รูปที่ 1 -->
+    <div class="card">
+        <img src="image1.jpg" alt="รูปภาพที่ 1">
 
-            <div class="content">
-                <h2>ภาพที่ 1</h2>
-                <p>
-                    แสงเหนือสีเขียวบนท้องฟ้าเหนือชายหาดหิน
-                    ท่ามกลางบรรยากาศยามค่ำคืน
-                </p>
-            </div>
+        <div class="content">
+            <h2>ภาพที่ 1</h2>
+            <p>
+                แสงเหนือสีเขียวบนท้องฟ้าเหนือชายหาดหิน
+                ท่ามกลางบรรยากาศยามค่ำคืน 🌌
+            </p>
         </div>
+    </div>
 
 
-        <!-- รูปที่ 2 -->
-        <div class="card">
-            <img src="image2.jpg" alt="รูปภาพที่ 2">
+    <!-- รูปที่ 2 -->
+    <div class="card">
+        <img src="image2.jpg" alt="รูปภาพที่ 2">
 
-            <div class="content">
-                <h2>ภาพที่ 2</h2>
-                <p>
-                    เม่นตัวน้อยที่น่ารักนั่งอยู่กลางดอกไม้สีเหลือง
-                    และหญ้าสีเขียว 🌼
-                </p>
-            </div>
+        <div class="content">
+            <h2>ภาพที่ 2</h2>
+            <p>
+                เม่นตัวน้อยที่น่ารักนั่งอยู่กลางดอกไม้สีเหลือง
+                และหญ้าสีเขียว 🌼
+            </p>
         </div>
+    </div>
 
 
-        <!-- รูปที่ 3 -->
-        <div class="card">
-            <img src="image3.jpg" alt="รูปภาพที่ 3">
+    <!-- รูปที่ 3 -->
+    <div class="card">
+        <img src="image3.jpg" alt="รูปภาพที่ 3">
 
-            <div class="content">
-                <h2>ภาพที่ 3</h2>
-                <p>
-                    ไลกา สุนัขที่ถูกส่งขึ้นไปในอวกาศที่กลายเป็น 
-                    สัตว์ตัวแรกที่โคจรรอบโลก 🚀
-                </p>
-            </div>
+        <div class="content">
+            <h2>ภาพที่ 3</h2>
+            <p>
+                ไลกา สุนัขที่ถูกส่งขึ้นไปในอวกาศ
+                และกลายเป็นสัตว์ตัวแรกที่โคจรรอบโลก 🚀
+            </p>
         </div>
+    </div>
 
-    </section>
+</section>
 
 
-    <!-- ส่วนท้าย -->
-    <footer>
-        <p>© 2026 แกลเลอรีรูปภาพของฉัน</p>
-        <p>สร้างสรรค์โดยนักเรียน</p>
-    </footer>
+<!-- ส่วนท้าย -->
+<footer>
+    <p>© 2026 แกลเลอรีรูปภาพของฉัน</p>
+    <p>สร้างสรรค์โดยนักเรียน 🌙</p>
+</footer>
+```
 
 </body>
 </html>
